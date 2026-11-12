@@ -1,4 +1,5 @@
-const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/$/, '');
+const defaultApiUrl = import.meta.env.PROD ? '/api' : 'http://localhost:5000/api';
+const API_BASE_URL = (import.meta.env.VITE_API_URL || defaultApiUrl).replace(/\/$/, '');
 
 async function request(method, path, body) {
   const token = localStorage.getItem('libraryToken');

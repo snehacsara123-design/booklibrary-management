@@ -92,3 +92,16 @@ BOOKLIBRARY/
     ├── package.json
     ├── tailwind.config.js
     └── vite.config.js
+```
+
+## Netlify deployment
+
+The frontend and API are deployed from the repository root. Netlify builds the React app and packages the Express API as a Function; `/api/*` requests are routed to that function.
+
+Set these server-side environment variables in the Netlify site configuration:
+
+- `MONGO_URI`: a MongoDB connection string reachable from Netlify Functions. A MongoDB instance running only on your computer is not reachable by the deployed API.
+- `JWT_SECRET`: a random secret of at least 32 characters.
+- `CORS_ORIGIN`: your Netlify site origin, such as `https://<your-site>.netlify.app`.
+
+The production frontend defaults to the same-origin `/api` path. For local development, keep `VITE_API_URL=http://localhost:5000/api` in `frontend/.env`. After setting the server-side variables, trigger a new deploy and verify `https://<your-site>.netlify.app/api/health` returns JSON.
