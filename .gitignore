@@ -11,3 +11,6 @@ frontend/.env
 frontend/.env.*
 !frontend/.env.example
 npm-debug.log*
+
+# Local Netlify folder
+.netlify

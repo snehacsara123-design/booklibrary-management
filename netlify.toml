@@ -1,17 +1,10 @@
 [build]
-  base = "."
   command = "npm ci --prefix frontend && npm run build --prefix frontend"
   publish = "frontend/dist"
+  functions = "backend"
 
-[functions]
-  directory = "netlify/functions"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/api/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[dev]
+  command = "node --env-file=.env backend/app.js"
+  port = 8888
+  targetPort = 5000
+  autoLaunch = false

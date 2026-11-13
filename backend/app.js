@@ -1,4 +1,4 @@
-import cors from 'cors';
+import 'dotenv/config';
 import express from 'express';
 import authRoutes from './routes/authRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
