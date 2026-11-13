@@ -24,6 +24,11 @@ async function request(method, path, body) {
   }
 
   if (!response.ok) {
+    if (response.status === 401) {
+      localStorage.removeItem('libraryToken');
+      localStorage.removeItem('libraryUser');
+      window.dispatchEvent(new Event('library:auth-expired'));
+    }
     const error = new Error(data?.message || `Request failed (${response.status})`);
     error.response = { status: response.status, data };
     throw error;
